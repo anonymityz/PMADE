@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.sca.benchmark</groupId>
+  <artifactId>type-war</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>type-war</name>
+  <description>A simple type-war.</description>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <!-- <dependency>
+      <groupId>org.hisp.dhis</groupId>
+      <artifactId>dhis-web-sms</artifactId>
+      <version>2.21</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>org.hisp.dhis</groupId>
+      <artifactId>dhis-web-uaa</artifactId>
+      <classifier>abc</classifier>
+      <version>2.21</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>org.hisp.dhis</groupId>
+      <artifactId>dhis-web-maintenance-datadictionary</artifactId>
+      <version>2.21</version>
+      <type>war</type>
+    </dependency> -->
+    <dependency>
+        <groupId>org.jboss.weld.examples.jsf.translator</groupId>
+        <artifactId>weld-jsf-translator-war</artifactId>
+        <version>4.0.2.Final</version>
+        <type>war</type>
+    </dependency>
+  </dependencies>
+
+  <!-- SMSLib -->
+    <repositories>
+    <repository>
+      <id>smslib</id>
+      <name>SMSLib</name>
+      <url>http://smslib.org/maven2/v3</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    </repositories>
+
+<build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <archiveClasses>true</archiveClasses>
+          <dependentWarExcludes>**/web.xml</dependentWarExcludes>
+          <archive>
+            <compress>${useWarCompression}</compress>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>9.2.7.v20150116</version>
+        <configuration>
+          <systemProperties>
+            <systemProperty>
+              <name>org.eclipse.jetty.server.Request.maxFormContentSize</name>
+              <value>10000000</value>
+            </systemProperty>
+          </systemProperties>
+          <webAppConfig>
+            <contextPath>/</contextPath>
+          </webAppConfig>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
